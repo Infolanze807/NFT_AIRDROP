@@ -14,7 +14,9 @@ contract CARNFT is ERC721 {
 
     address private owner;
 
-    constructor() ERC721("Cars", "C$") {owner = msg.sender;}
+    constructor() ERC721("Cars", "C$") {
+        owner = msg.sender;
+    }
 
     function mint(string memory tokenURIs) external {
         require(msg.sender == owner, "Only owner can mint tokens");
@@ -131,4 +133,6 @@ contract CARNFT is ERC721 {
         tokenIds.pop();
     }
 }
-0x05caA4CD24f61f57E0b3A5027571e681c1df2382
+
+
+0xcfe494e1F424c42772bD664FBC67F739a5ECDce0
