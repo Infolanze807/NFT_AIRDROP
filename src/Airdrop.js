@@ -173,11 +173,11 @@ const Airdrop = () => {
             return;
           }
       
-          const recipientTokenIds = await contract.methods.tokensOfOwner().call({ from: currentAccount });
-          if (recipientTokenIds.length > 0) {
-            alert("Recipient has already received an NFT airdrop.");
-            return;
-          }
+          // const recipientTokenIds = await contract.methods.tokensOfOwner().call({ from: currentAccount });
+          // if (recipientTokenIds.length > 0) {
+          //   alert("Recipient has already received an NFT airdrop.");
+          //   return;
+          // }
       
           let methodToCall;
           let gas;
