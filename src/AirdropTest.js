@@ -143,10 +143,11 @@ const AirdropTest = () => {
       const contract = new web3.eth.Contract(ABI, ContractAdd);
 
       const recipientTokenIds = await contract.methods
-        .tokensOfOwner(currentAccount)
-        .call();
+      .tokensOfReciver(currentAccount)
+      .call();
+    console.log("token of reciver :",recipientTokenIds)  
       const recipientTokenCount = recipientTokenIds.length;
-
+  
       if (recipientTokenCount >= 8) {
         alert(
           "You have already claimed 8 tokens. You are not eligible to claim more NFTs."
@@ -203,10 +204,11 @@ const AirdropTest = () => {
       const contract = new web3.eth.Contract(ABI, ContractAdd);
 
       const recipientTokenIds = await contract.methods
-        .tokensOfOwner(currentAccount)
-        .call();
+      .tokensOfReciver(currentAccount)
+      .call();
+    console.log("token of reciver :",recipientTokenIds)  
       const recipientTokenCount = recipientTokenIds.length;
-
+  
       if (recipientTokenCount >= 8) {
         alert(
           "You have already claimed 8 tokens. You are not eligible to claim more NFTs."
