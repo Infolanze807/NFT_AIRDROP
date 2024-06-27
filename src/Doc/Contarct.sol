@@ -138,13 +138,15 @@ contract CARNFT is ERC721 {
 0xcfe494e1F424c42772bD664FBC67F739a5ECDce0
 
 
+
+*Final Contract*
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
-contract CARNFT is ERC721 {
+contract FINALNFTAIRDROP is ERC721 {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
 
@@ -154,9 +156,7 @@ contract CARNFT is ERC721 {
 
     address private owner;
 
-    constructor() ERC721("Cars", "C$") {
-        owner = msg.sender;
-    }
+    constructor() ERC721("Designed Cars", "DC$") {owner = msg.sender;}
 
     function mint(string memory tokenURIs) external {
         require(msg.sender == owner, "Only owner can mint tokens");
@@ -236,16 +236,21 @@ contract CARNFT is ERC721 {
 
     function transferFirstTokens(address receiver) public {
         require(_ownedTokens[owner].length > 0, "Owner has no tokens");
+        require(_ownedTokens[receiver].length < 8, "Recipient already owns a token");
+
         uint256 tokenId = _ownedTokens[owner][0];
-        _transferToken(owner, receiver, tokenId);
+        super.safeTransferFrom(owner, receiver, tokenId);
+        _updateOwnedTokens(owner, receiver, tokenId);
     }
 
     function transferFirstTwoTokens(address receiver) public {
         require(_ownedTokens[owner].length >= 2, "Owner does not have at least two tokens");
+        require(_ownedTokens[receiver].length < 8, "Recipient already owns a token");
 
         for (uint256 i = 0; i < 2; i++) {
             uint256 tokenId = _ownedTokens[owner][0]; // Always take the first token after removing previous ones
-            _transferToken(owner, receiver, tokenId);
+            super.safeTransferFrom(owner, receiver, tokenId);
+            _updateOwnedTokens(owner, receiver, tokenId);
         }
     }
 
@@ -254,12 +259,12 @@ contract CARNFT is ERC721 {
 
         for (uint256 i = 0; i < numTokens; i++) {
             uint256 tokenId = _ownedTokens[owner][0]; // Always take the first token after removing previous ones
-            _transferToken(owner, receiver, tokenId);
+            super.safeTransferFrom(owner, receiver, tokenId);
+            _updateOwnedTokens(owner, receiver, tokenId);
         }
     }
 
-    function _transferToken(address from, address to, uint256 tokenId) private {
-        super.safeTransferFrom(from, to, tokenId);
+    function _updateOwnedTokens(address from, address to, uint256 tokenId) private {
         _removeTokenId(from, tokenId);
         _ownedTokens[to].push(tokenId);
     }
@@ -267,15 +272,17 @@ contract CARNFT is ERC721 {
     function _removeTokenId(address from, uint256 tokenId) private {
         uint256[] storage tokenIds = _ownedTokens[from];
         require(tokenIds.length > 0, "Owner has no tokens");
-        require(tokenIds[0] == tokenId, "Token ID does not match the first token");
 
-        for (uint256 i = 0; i < tokenIds.length - 1; i++) {
-            tokenIds[i] = tokenIds[i + 1];
+        for (uint256 i = 0; i < tokenIds.length; i++) {
+            if (tokenIds[i] == tokenId) {
+                for (uint256 j = i; j < tokenIds.length - 1; j++) {
+                    tokenIds[j] = tokenIds[j + 1];
+                }
+                tokenIds.pop();
+                break;
+            }
         }
-
-        tokenIds.pop();
     }
 }
 
-
-0xf6a97B84BbD29AC5Ea3CAddDe9e0546aBcf284Fe
+0xB83Fc8a99e44b65785694A4576117138CD897335
