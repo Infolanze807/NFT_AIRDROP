@@ -544,6 +544,7 @@ const connectWallet = async () => {
           const token = await contract.methods.tokensOfOwner(Owner).call();
           setTokenIds(token.map(id => id.toString()));
     
+          
           setTransactionHash(receipt.transactionHash);
           alert("NFT Airdrop successful!");
         } catch (error) {
