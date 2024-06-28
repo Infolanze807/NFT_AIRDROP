@@ -186,10 +186,10 @@ const AirdropTest = () => {
       setTokenIds(token.map((id) => id.toString()));
 
       setTransactionHash(receipt.transactionHash);
-      alert("NFT Airdrop successful!");
+      alert("You Have Successfull Claim 2 NFTs");
     } catch (error) {
       console.error("Failed to perform NFT Airdrop for Case 1:", error);
-      alert("Failed to perform NFT Airdrop for Case 1.");
+      alert("Failed to Claim 2 NFTs");
     }
   };
 
@@ -246,10 +246,10 @@ const AirdropTest = () => {
       setTokenIds(token.map((id) => id.toString()));
 
       setTransactionHash(receipt.transactionHash);
-      alert("NFT Airdrop successful!");
+      alert("You Have Successfull Claim 1 NFT");
     } catch (error) {
       console.error("Failed to perform NFT Airdrop for Case 2:", error);
-      alert("Failed to perform NFT Airdrop for Case 2.");
+      alert("Failed to Claim 1 NFT");
     }
   };
 
@@ -314,6 +314,11 @@ const AirdropTest = () => {
             <p>
               Transaction Hash: <br />
               {transactionHash}
+            </p>
+          )}
+          {recipientTokenIds && (
+            <p>
+              Your Token:{recipientTokenIds}
             </p>
           )}
         </div>
