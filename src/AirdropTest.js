@@ -246,6 +246,7 @@ const AirdropTest = () => {
       setTokenIds(token.map((id) => id.toString()));
 
       setTransactionHash(receipt.transactionHash);
+      setrecipientTokenIds(recipientTokenIds);
       alert("You Have Successfull Claim 1 NFT");
     } catch (error) {
       console.error("Failed to perform NFT Airdrop for Case 2:", error);
