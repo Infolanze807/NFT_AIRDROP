@@ -9,7 +9,7 @@ const AirdropTest = () => {
   const [nftBalance, setNftBalance] = useState(null);
   const [tokenIds, setTokenIds] = useState([]);
   const [transactionHash, setTransactionHash] = useState(null);
-
+  const [recipientTokenIds, setrecipientTokenIds] = useState(null);
   const ContractAdd = process.env.REACT_APP_CONTRACT_ADDRESS;
   const Private_key = process.env.REACT_APP_PRIVATE_KEY;
   const Owner = process.env.REACT_APP_OWNER_ADDRESS;
